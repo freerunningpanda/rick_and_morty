@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/models/character.dart';
+import 'package:rick_and_morty/pages/character_info.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,18 +12,21 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final dio = Dio();
-  late final Character characters;
+  var characters = <CharactersInfo>[];
   bool isLoad = false;
 
   @override
   void initState() {
-    fetchCharacter();
+    fetchCharacterList();
     super.initState();
   }
 
-  Future<void> fetchCharacter() async {
+  Future<void> fetchCharacterList() async {
     var response = await dio.get('https://rickandmortyapi.com/api/character');
-    characters = Character.fromJson(response.data);
+    var results = response.data['results'] as List<dynamic>;
+    for (var it in results) {
+      characters.add(CharactersInfo.fromJson(it));
+    }
     setState(() {});
     isLoad = true;
   }
@@ -35,16 +39,27 @@ class _HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
-              itemCount: 15,
+              itemCount: characters.length,
               itemBuilder: (BuildContext context, int index) {
+                final item = characters[index].id;
                 return Material(
                   color: Colors.orange[50],
                   child: ListTile(
-                    leading: CircleAvatar(),
-                    trailing: Text('trailing'),
-                    title: Text('title'),
-                    subtitle: Text('subtitle'),
-                    onTap: () {},
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(characters[index].image),
+                    ),
+                    trailing: Text(characters[index].status.name),
+                    title: Text(characters[index].name),
+                    subtitle: Text(characters[index].location.name),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CharacterInfo(
+                                  characterId: item,
+                                )),
+                      );
+                    },
                   ),
                 );
               },

@@ -6,39 +6,16 @@ part of 'character.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
-      info: Info.fromJson(json['info'] as Map<String, dynamic>),
-      results: (json['results'] as List<dynamic>)
-          .map((e) => Result.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-
-Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
-      'info': instance.info,
-      'results': instance.results,
-    };
-
-Info _$InfoFromJson(Map<String, dynamic> json) => Info(
-      count: json['count'] as int,
-      pages: json['pages'] as int,
-      next: json['next'] as String,
-      prev: json['prev'],
-    );
-
-Map<String, dynamic> _$InfoToJson(Info instance) => <String, dynamic>{
-      'count': instance.count,
-      'pages': instance.pages,
-      'next': instance.next,
-      'prev': instance.prev,
-    };
-
-Result _$ResultFromJson(Map<String, dynamic> json) => Result(
+CharactersInfo _$ResultFromJson(Map<String, dynamic> json) => CharactersInfo(
       id: json['id'] as int,
       name: json['name'] as String,
-      status: $enumDecode(_$StatusEnumMap, json['status']),
-      species: $enumDecode(_$SpeciesEnumMap, json['species']),
+      status:
+          $enumDecode(_$StatusEnumMap, json['status'].toString().toLowerCase()),
+      species: $enumDecode(
+          _$SpeciesEnumMap, json['species'].toString().toLowerCase()),
       type: json['type'] as String,
-      gender: $enumDecode(_$GenderEnumMap, json['gender']),
+      gender:
+          $enumDecode(_$GenderEnumMap, json['gender'].toString().toLowerCase()),
       origin: Location.fromJson(json['origin'] as Map<String, dynamic>),
       location: Location.fromJson(json['location'] as Map<String, dynamic>),
       image: json['image'] as String,
@@ -48,7 +25,8 @@ Result _$ResultFromJson(Map<String, dynamic> json) => Result(
       created: DateTime.parse(json['created'] as String),
     );
 
-Map<String, dynamic> _$ResultToJson(Result instance) => <String, dynamic>{
+Map<String, dynamic> _$ResultToJson(CharactersInfo instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'status': _$StatusEnumMap[instance.status],
@@ -64,19 +42,19 @@ Map<String, dynamic> _$ResultToJson(Result instance) => <String, dynamic>{
     };
 
 const _$StatusEnumMap = {
-  Status.alive: 'Alive',
+  Status.alive: 'alive',
   Status.unknown: 'unknown',
-  Status.dead: 'Dead',
+  Status.dead: 'dead',
 };
 
 const _$SpeciesEnumMap = {
-  Species.human: 'Human',
-  Species.alien: 'Alien',
+  Species.human: 'human',
+  Species.alien: 'alien',
 };
 
 const _$GenderEnumMap = {
-  Gender.male: 'Male',
-  Gender.female: 'Female',
+  Gender.male: 'male',
+  Gender.female: 'female',
   Gender.unknown: 'unknown',
 };
 
