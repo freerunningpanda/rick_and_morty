@@ -41,22 +41,22 @@ class _HomePageState extends State<HomePage> {
           : ListView.builder(
               itemCount: characters.length,
               itemBuilder: (BuildContext context, int index) {
-                final item = characters[index].id;
+                final item = characters[index];
                 return Material(
                   color: Colors.orange[50],
                   child: ListTile(
                     leading: CircleAvatar(
-                      backgroundImage: NetworkImage(characters[index].image),
+                      backgroundImage: NetworkImage(item.image),
                     ),
-                    trailing: Text(characters[index].status.name),
-                    title: Text(characters[index].name),
-                    subtitle: Text(characters[index].location.name),
+                    trailing: Text(item.status.name),
+                    title: Text(item.name),
+                    subtitle: Text(item.species.name),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => CharacterInfo(
-                                  characterId: item,
+                                  characterId: item.id,
                                 )),
                       );
                     },
