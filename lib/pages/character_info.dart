@@ -14,8 +14,11 @@ class CharacterInfo extends StatelessWidget {
     final controller = Get.find<CharacterInfoController>();
     return Obx(
       () => !controller.isLoad.value
-          ? const Center(
-              child: CircularProgressIndicator(),
+          ? Container(
+              color: Colors.orange[50],
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
             )
           : Scaffold(
               backgroundColor: Colors.orange[50],

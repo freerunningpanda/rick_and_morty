@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:rick_and_morty/models/character.dart';
+
+import '../models/character.dart';
 
 class DownloadController extends GetxController {
   final dio = Dio();
