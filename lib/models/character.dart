@@ -1,7 +1,9 @@
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'character.g.dart';
 
+@HiveType(typeId: 0)
 @JsonSerializable()
 class CharactersInfo {
   CharactersInfo({
@@ -19,18 +21,19 @@ class CharactersInfo {
     required this.created,
   });
 
-  int id;
-  String name;
-  String status;
-  String species;
-  String type;
-  String gender;
-  Location origin;
-  Location location;
-  String image;
-  List<String> episode;
-  String url;
-  DateTime created;
+  @HiveField(0)
+  final int id;
+  final String name;
+  final String status;
+  final String species;
+  final String type;
+  final String gender;
+  final Location origin;
+  final Location location;
+  final String image;
+  final List<String> episode;
+  final String url;
+  final DateTime created;
 
   factory CharactersInfo.fromJson(Map<String, dynamic> json) =>
       _$CharactersInfoFromJson(json);
@@ -45,8 +48,8 @@ class Location {
     required this.url,
   });
 
-  String name;
-  String url;
+  final String name;
+  final String url;
 
   factory Location.fromJson(Map<String, dynamic> json) =>
       _$LocationFromJson(json);
