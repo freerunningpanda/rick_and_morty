@@ -47,7 +47,7 @@ class CharacterInfo extends StatelessWidget {
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        controller.character.status.name,
+                        controller.character.status,
                         style: const TextStyle(fontSize: 16),
                       ),
                       const SizedBox(height: 10),
@@ -56,14 +56,14 @@ class CharacterInfo extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      Text(controller.character.species.name),
+                      Text(controller.character.species),
                       const SizedBox(height: 10),
                       const Text(
                         'Gender:',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      Text(controller.character.gender.name),
+                      Text(controller.character.gender),
                       const SizedBox(height: 10),
                       const Text(
                         'Origin:',

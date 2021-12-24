@@ -26,9 +26,9 @@ class HomePage extends StatelessWidget {
                       leading: CircleAvatar(
                         backgroundImage: NetworkImage(item.image),
                       ),
-                      trailing: Text(item.status.name),
+                      trailing: Text(item.status),
                       title: Text(item.name),
-                      subtitle: Text(item.species.name),
+                      subtitle: Text(item.species),
                       onTap: () {
                         Get.to(
                           () => CharacterInfo(characterId: item.id),

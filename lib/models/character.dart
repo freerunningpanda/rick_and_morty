@@ -21,10 +21,10 @@ class CharactersInfo {
 
   int id;
   String name;
-  Status status;
-  Species species;
+  String status;
+  String species;
   String type;
-  Gender gender;
+  String gender;
   Location origin;
   Location location;
   String image;
@@ -33,12 +33,10 @@ class CharactersInfo {
   DateTime created;
 
   factory CharactersInfo.fromJson(Map<String, dynamic> json) =>
-      _$ResultFromJson(json);
+      _$CharactersInfoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ResultToJson(this);
+  Map<String, dynamic> toJson() => _$CharactersInfoToJson(this);
 }
-
-enum Gender { male, female, unknown }
 
 @JsonSerializable()
 class Location {
@@ -55,7 +53,3 @@ class Location {
 
   Map<String, dynamic> toJson() => _$LocationToJson(this);
 }
-
-enum Species { human, alien }
-
-enum Status { alive, unknown, dead }

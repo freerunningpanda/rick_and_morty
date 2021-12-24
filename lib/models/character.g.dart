@@ -6,16 +6,14 @@ part of 'character.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CharactersInfo _$ResultFromJson(Map<String, dynamic> json) => CharactersInfo(
+CharactersInfo _$CharactersInfoFromJson(Map<String, dynamic> json) =>
+    CharactersInfo(
       id: json['id'] as int,
       name: json['name'] as String,
-      status:
-          $enumDecode(_$StatusEnumMap, json['status'].toString().toLowerCase()),
-      species: $enumDecode(
-          _$SpeciesEnumMap, json['species'].toString().toLowerCase()),
+      status: json['status'] as String,
+      species: json['species'] as String,
       type: json['type'] as String,
-      gender:
-          $enumDecode(_$GenderEnumMap, json['gender'].toString().toLowerCase()),
+      gender: json['gender'] as String,
       origin: Location.fromJson(json['origin'] as Map<String, dynamic>),
       location: Location.fromJson(json['location'] as Map<String, dynamic>),
       image: json['image'] as String,
@@ -25,14 +23,14 @@ CharactersInfo _$ResultFromJson(Map<String, dynamic> json) => CharactersInfo(
       created: DateTime.parse(json['created'] as String),
     );
 
-Map<String, dynamic> _$ResultToJson(CharactersInfo instance) =>
+Map<String, dynamic> _$CharactersInfoToJson(CharactersInfo instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'status': _$StatusEnumMap[instance.status],
-      'species': _$SpeciesEnumMap[instance.species],
+      'status': instance.status,
+      'species': instance.species,
       'type': instance.type,
-      'gender': _$GenderEnumMap[instance.gender],
+      'gender': instance.gender,
       'origin': instance.origin,
       'location': instance.location,
       'image': instance.image,
@@ -40,23 +38,6 @@ Map<String, dynamic> _$ResultToJson(CharactersInfo instance) =>
       'url': instance.url,
       'created': instance.created.toIso8601String(),
     };
-
-const _$StatusEnumMap = {
-  Status.alive: 'alive',
-  Status.unknown: 'unknown',
-  Status.dead: 'dead',
-};
-
-const _$SpeciesEnumMap = {
-  Species.human: 'human',
-  Species.alien: 'alien',
-};
-
-const _$GenderEnumMap = {
-  Gender.male: 'male',
-  Gender.female: 'female',
-  Gender.unknown: 'unknown',
-};
 
 Location _$LocationFromJson(Map<String, dynamic> json) => Location(
       name: json['name'] as String,
