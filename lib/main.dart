@@ -4,13 +4,16 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'controllers/download_controller.dart';
+import 'models/character.dart';
 import 'pages/home_page.dart';
 
+const String charactersList = 'characters';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final document = await getApplicationDocumentsDirectory();
   Hive.init(document.path);
-  await Hive.openBox('charactersList');
+  Hive.registerAdapter(CharactersInfoAdapter());
+  await Hive.openBox<CharactersInfo>(charactersList);
   runApp(const MyApp());
 }
 

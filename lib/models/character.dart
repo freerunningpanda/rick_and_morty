@@ -23,16 +23,27 @@ class CharactersInfo {
 
   @HiveField(0)
   final int id;
+  @HiveField(1)
   final String name;
+  @HiveField(2)
   final String status;
+  @HiveField(3)
   final String species;
+  @HiveField(4)
   final String type;
+  @HiveField(5)
   final String gender;
+  @HiveField(6)
   final Location origin;
+  @HiveField(7)
   final Location location;
+  @HiveField(8)
   final String image;
+  @HiveField(9)
   final List<String> episode;
+  @HiveField(10)
   final String url;
+  @HiveField(11)
   final DateTime created;
 
   factory CharactersInfo.fromJson(Map<String, dynamic> json) =>
@@ -41,6 +52,7 @@ class CharactersInfo {
   Map<String, dynamic> toJson() => _$CharactersInfoToJson(this);
 }
 
+@HiveType(typeId: 0)
 @JsonSerializable()
 class Location {
   Location({
@@ -48,7 +60,9 @@ class Location {
     required this.url,
   });
 
+  @HiveField(0)
   final String name;
+  @HiveField(1)
   final String url;
 
   factory Location.fromJson(Map<String, dynamic> json) =>

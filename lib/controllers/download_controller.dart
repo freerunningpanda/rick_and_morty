@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:rick_and_morty/main.dart';
 
 import '../models/character.dart';
 
 class DownloadController extends GetxController {
+  late Box<CharactersInfo> charactersBox;
+
   final dio = Dio();
   var characters = <CharactersInfo>[].obs;
   var isLoad = false.obs;
@@ -12,6 +16,7 @@ class DownloadController extends GetxController {
   void onInit() {
     super.onInit();
     fetchCharacterList();
+    charactersBox = Hive.box<CharactersInfo>(charactersList);
   }
 
   Future<void> fetchCharacterList() async {
