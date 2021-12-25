@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'controllers/download_controller.dart';
@@ -11,7 +11,7 @@ const String charactersList = 'characters';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final document = await getApplicationDocumentsDirectory();
-  Hive.init(document.path);
+  await Hive.initFlutter(document.path);
   Hive.registerAdapter(CharactersInfoAdapter());
   await Hive.openBox<CharactersInfo>(charactersList);
   runApp(const MyApp());
