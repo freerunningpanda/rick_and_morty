@@ -6,9 +6,39 @@ part of 'character.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class CharactersInfoAdapter extends TypeAdapter<CharactersInfo> {
+class CharactersBoxAdapter extends TypeAdapter<CharactersBox> {
   @override
   final int typeId = 0;
+
+  @override
+  CharactersBox read(BinaryReader reader) {
+    return CharactersBox();
+  }
+
+  @override
+  void write(BinaryWriter writer, CharactersBox obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.charactersInfo)
+      ..writeByte(1)
+      ..write(obj.location);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CharactersBoxAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class CharactersInfoAdapter extends TypeAdapter<CharactersInfo> {
+  @override
+  final int typeId = 1;
 
   @override
   CharactersInfo read(BinaryReader reader) {
@@ -75,7 +105,7 @@ class CharactersInfoAdapter extends TypeAdapter<CharactersInfo> {
 
 class LocationAdapter extends TypeAdapter<Location> {
   @override
-  final int typeId = 0;
+  final int typeId = 2;
 
   @override
   Location read(BinaryReader reader) {

@@ -4,8 +4,16 @@ import 'package:json_annotation/json_annotation.dart';
 part 'character.g.dart';
 
 @HiveType(typeId: 0)
+class CharactersBox extends HiveObject {
+  @HiveField(0)
+  final charactersInfo = <CharactersInfo>[];
+  @HiveField(1)
+  final location = <Location>[];
+}
+
+@HiveType(typeId: 1)
 @JsonSerializable()
-class CharactersInfo {
+class CharactersInfo extends HiveObject {
   CharactersInfo({
     required this.id,
     required this.name,
@@ -52,9 +60,9 @@ class CharactersInfo {
   Map<String, dynamic> toJson() => _$CharactersInfoToJson(this);
 }
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 2)
 @JsonSerializable()
-class Location {
+class Location extends HiveObject {
   Location({
     required this.name,
     required this.url,

@@ -3,9 +3,12 @@ import 'package:get/get.dart';
 
 import '../controllers/download_controller.dart';
 import '../pages/character_info.dart';
+import '../api/rick_and_morty_api.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final RickAndMortyProvider rickAndMortyProvider;
+  const HomePage({Key? key, required this.rickAndMortyProvider})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,10 @@ class HomePage extends StatelessWidget {
                       subtitle: Text(item.species),
                       onTap: () {
                         Get.to(
-                          () => CharacterInfo(characterId: item.id),
+                          () => CharacterInfo(
+                            characterId: item.id,
+                            rickAndMortyCharacter: rickAndMortyProvider,
+                          ),
                         );
                       },
                     ),

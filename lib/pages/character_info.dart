@@ -2,15 +2,22 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../api/rick_and_morty_api.dart';
 import '../controllers/character_info_controller.dart';
 
 class CharacterInfo extends StatelessWidget {
   final int characterId;
-  const CharacterInfo({Key? key, required this.characterId}) : super(key: key);
+  final RickAndMortyCharacter rickAndMortyCharacter;
+  const CharacterInfo(
+      {Key? key,
+      required this.characterId,
+      required this.rickAndMortyCharacter})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => CharacterInfoController(characterId));
+    Get.lazyPut(() => CharacterInfoController(
+        id: characterId, rickAndMortyCharacter: rickAndMortyCharacter));
     final controller = Get.find<CharacterInfoController>();
     return Obx(
       () => !controller.isLoad.value

@@ -1,27 +1,30 @@
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
+import '../api/rick_and_morty_api.dart';
 import '../models/character.dart';
 
 class CharacterInfoController extends GetxController {
+  final RickAndMortyCharacter rickAndMortyCharacter;
   final int id;
 
-  var dio = Dio();
   late CharactersInfo character;
   var isLoad = false.obs;
 
-  CharacterInfoController(this.id);
+  CharacterInfoController(
+      {required this.id, required this.rickAndMortyCharacter});
 
   @override
   void onInit() {
     super.onInit();
-    fetchCharacter();
+    fetchCharacter(id);
   }
 
-  Future<void> fetchCharacter() async {
-    var response =
-        await dio.get('https://rickandmortyapi.com/api/character/$id');
-    character = CharactersInfo.fromJson(response.data);
-    isLoad.value = true;
+  Future<void> fetchCharacter(int id) async {
+    try {
+      character = await rickAndMortyCharacter.getCharacter(id);
+      isLoad.value = true;
+    } on RickAndMortException catch (e) {
+      Get.snackbar('O_o', e.toString());
+    }
   }
 }

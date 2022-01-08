@@ -1,30 +1,35 @@
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:rick_and_morty/main.dart';
 
+import '../api/rick_and_morty_api.dart';
+import '../constants.dart';
 import '../models/character.dart';
 
 class DownloadController extends GetxController {
-  late Box<CharactersInfo> charactersBox;
+  final RickAndMortyHomePage rickAndMortyHomePage;
+  late Box<CharactersBox> charactersBox;
 
-  final dio = Dio();
   var characters = <CharactersInfo>[].obs;
   var isLoad = false.obs;
+
+  DownloadController(this.rickAndMortyHomePage);
 
   @override
   void onInit() {
     super.onInit();
     fetchCharacterList();
-    charactersBox = Hive.box<CharactersInfo>(charactersList);
+    charactersBox = Hive.box<CharactersBox>(charactersList);
+    var list = [charactersBox.get(charactersList)];
+    // list.add(CharactersBox());
+    // CharactersBox().save();
   }
 
   Future<void> fetchCharacterList() async {
-    var response = await dio.get('https://rickandmortyapi.com/api/character');
-    var results = response.data['results'] as List<dynamic>;
-    for (var it in results) {
-      characters.add(CharactersInfo.fromJson(it));
+    try {
+      isLoad.value = true;
+      characters.value = await rickAndMortyHomePage.getCharacters();
+    } on RickAndMortException catch (e) {
+      Get.snackbar('O_o', e.toString());
     }
-    isLoad.value = true;
   }
 }
