@@ -20,9 +20,9 @@ class HomePage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               )
             : ListView.builder(
-                itemCount: controller.characters.length,
+                itemCount: controller.charactersList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final item = controller.characters[index];
+                  final item = controller.charactersList[index];
                   return Material(
                     color: Colors.orange[50],
                     child: ListTile(

@@ -9,25 +9,28 @@ class DownloadController extends GetxController {
   final RickAndMortyHomePage rickAndMortyHomePage;
   late Box<CharactersBox> charactersBox;
 
-  var characters = <CharactersInfo>[].obs;
+  var charactersList = <CharactersInfo>[].obs;
   var isLoad = false.obs;
 
-  DownloadController(this.rickAndMortyHomePage);
+  DownloadController(
+    this.rickAndMortyHomePage,
+  );
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     fetchCharacterList();
-    charactersBox = Hive.box<CharactersBox>(charactersList);
-    var list = [charactersBox.get(charactersList)];
-    // list.add(CharactersBox());
-    // CharactersBox().save();
+    charactersBox = Hive.box<CharactersBox>(characters);
+    final box = charactersBox.get(charactersBox);
+    charactersBox.add(CharactersBox());
+    box?.save();
+    print(charactersBox.length);
   }
 
   Future<void> fetchCharacterList() async {
     try {
       isLoad.value = true;
-      characters.value = await rickAndMortyHomePage.getCharacters();
+      charactersList.value = await rickAndMortyHomePage.getCharacters();
     } on RickAndMortException catch (e) {
       Get.snackbar('O_o', e.toString());
     }

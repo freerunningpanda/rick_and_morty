@@ -15,7 +15,7 @@ void main() async {
   await Hive.initFlutter(document.path);
   Hive.registerAdapter(CharactersInfoAdapter());
   Hive.registerAdapter(CharactersBoxAdapter());
-  await Hive.openBox<CharactersBox>(charactersList);
+  await Hive.openBox<CharactersBox>(characters);
   runApp(const MyApp());
 }
 
