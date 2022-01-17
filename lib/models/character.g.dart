@@ -12,7 +12,13 @@ class CharactersBoxAdapter extends TypeAdapter<CharactersBox> {
 
   @override
   CharactersBox read(BinaryReader reader) {
-    return CharactersBox();
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return CharactersBox()
+      ..charactersInfo = (fields[0] as List).cast<CharactersInfo>()
+      ..location = (fields[1] as List).cast<dynamic>();
   }
 
   @override

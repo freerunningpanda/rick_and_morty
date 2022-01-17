@@ -6,9 +6,9 @@ part 'character.g.dart';
 @HiveType(typeId: 0)
 class CharactersBox extends HiveObject {
   @HiveField(0)
-  final List charactersInfo = <CharactersInfo>[];
+  var charactersInfo = <CharactersInfo>[];
   @HiveField(1)
-  final location = <Location>[];
+  List location = <Location>[];
 }
 
 @HiveType(typeId: 1)

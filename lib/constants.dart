@@ -1,2 +1,2 @@
-const String charactersList = 'characters';
+const String charactersListBox = 'characters';
 const String characters = 'charactersBox';

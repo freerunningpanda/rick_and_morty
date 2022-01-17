@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/download_controller.dart';
+import '../controllers/homepage_controller.dart';
 import '../pages/character_info.dart';
 import '../api/rick_and_morty_api.dart';
 
@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<DownloadController>();
+    final controller = Get.find<HomePageController>();
     return Obx(
       () => Scaffold(
         body: !controller.isLoad.value
