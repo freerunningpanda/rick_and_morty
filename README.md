@@ -1,4 +1,4 @@
-# rick_and_morty
+# Rick And Morty
 
 Rick and Morty
 
