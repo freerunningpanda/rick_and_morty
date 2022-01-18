@@ -9,7 +9,8 @@ import 'models/character.dart';
 import 'pages/home_page.dart';
 import 'constants.dart';
 
-const bool cleanStateOnRestart = false;
+const boxDelete = false;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final document = await getApplicationDocumentsDirectory();
@@ -17,11 +18,10 @@ void main() async {
   Hive.registerAdapter(CharactersInfoAdapter());
   Hive.registerAdapter(CharactersBoxAdapter());
   Hive.registerAdapter(LocationAdapter());
-  if (cleanStateOnRestart) {
-    await Hive.deleteBoxFromDisk(characters);
+  if (boxDelete) {
+    Hive.deleteBoxFromDisk(charactersListBox);
   }
-  await Hive.openBox<CharactersBox>(characters);
-
+  await Hive.openBox<CharactersBox>(charactersListBox);
   runApp(const MyApp());
 }
 

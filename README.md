@@ -1,16 +1,9 @@
 # rick_and_morty
 
-A new Flutter project.
+Rick and Morty
 
-## Getting Started
+## Описание
 
-This project is a starting point for a Flutter application.
+Данное приложение отображает список из персонажей мультика Rick And Morty, по нажатию на которых можно посмотреть детальную информацию о данном персонаже.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Все данные по персонажам подгружаются с https://rickandmortyapi.com/

@@ -19,22 +19,20 @@ class HomePageController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    charactersBox = Hive.box<CharactersBox>(characters);
+    charactersBox = Hive.box<CharactersBox>(charactersListBox);
     if (charactersBox.containsKey(charactersListBox)) {
       final box = charactersBox.get(charactersListBox);
-      charactersList.addAll(box!.charactersInfo);
+      charactersList = box!.charactersInfo;
     } else {
       var isGood = await fetchCharacterList();
       if (isGood) {
         var temp = CharactersBox();
+        temp.charactersInfo = charactersList;
         charactersBox.put(charactersListBox, temp);
-        var box = charactersBox.get(charactersListBox);
-        box?.charactersInfo.addAll(<CharactersInfo>[...charactersList]);
-        box?.save();
       }
     }
-
     isLoad.value = true;
+    print(charactersBox.length);
   }
 
   Future<bool> fetchCharacterList() async {
