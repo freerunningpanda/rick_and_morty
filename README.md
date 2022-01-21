@@ -4,6 +4,6 @@ Rick and Morty
 
 ## Описание
 
-Данное приложение отображает список из персонажей мультика Rick And Morty, по нажатию на которых можно посмотреть детальную информацию о данном персонаже. Данные сохраняются на устройстве при помощи базы данных Hive.
+This app shows a list of characters Rick and Morty, by clicking on which, you can watch detailed information of choosed character. Data stored at the device by using Hive Database.
 
-Все данные по персонажам подгружаются с https://rickandmortyapi.com/
+All data of characters is loading from https://rickandmortyapi.com/
