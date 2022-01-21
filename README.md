@@ -1,6 +1,6 @@
 # Rick And Morty
 
-Rick and Morty
+Pet project
 
 ## Description
 
